@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "7d7b1a2c-4ec7-4f66-8cbc-a6165f78f93b",
+		"name": "Session Plan - AWS Migration II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Schedules for Subjectkey",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "59319038-c604-4ef4-a5ce-f955726dd4f6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"schedule array must not be empty\", () => {\r",
+							"    _.each(pm.response.json(), (arrItem) => {\r",
+							"pm.environment.unset(\"variable_key\");\r",
+							"        //console.log(arrItem);\r",
+							"        //console.log(arrItem.schedule);\r",
+							"        console.log(arrItem.schedule.length);\r",
+							"        pm.expect(arrItem.schedule.length).to.not.equal(0);\r",
+							"    })\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"subject_key\": \"{{SK}}\",\r\n\t\"date\": \"2020-08-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://nfactorylive.ncinga.com/app_shift_services/v2/getschedulesforsubjectkey",
+					"protocol": "https",
+					"host": [
+						"nfactorylive",
+						"ncinga",
+						"com"
+					],
+					"path": [
+						"app_shift_services",
+						"v2",
+						"getschedulesforsubjectkey"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shifts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4089a852-def6-4d8f-9b61-7b2b3f6a00ea",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"shift array must not be day_shift\", () => {\r",
+							"    _.each(pm.response.json(), (arrItem) => {\r",
+							"pm.environment.unset(\"variable_key\");\r",
+							"        //console.log(arrItem);\r",
+							"        console.log(arrItem.shift_id);\r",
+							"        console.log(arrItem.shift_display_name);\r",
+							"        pm.expect(arrItem.shift_id).to.equal(\"day_shift\");\r",
+							"    })\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "nfactorylive.ncinga.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "origin",
+						"value": "https://nfactorylive.ncinga.com"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://nfactorylive.ncinga.com/ba-app/"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"subject_key\":\"{{SK}}\"}"
+				},
+				"url": {
+					"raw": "https://nfactorylive.ncinga.com/app_shift_services/v2/getshifts",
+					"protocol": "https",
+					"host": [
+						"nfactorylive",
+						"ncinga",
+						"com"
+					],
+					"path": [
+						"app_shift_services",
+						"v2",
+						"getshifts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shifts for Subject",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52a4b314-bf4c-41a9-b727-391663de7427",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"shift array must not be empty\", () => {\r",
+							"    _.each(pm.response.json(), (arrItem) => {\r",
+							"pm.environment.unset(\"variable_key\");\r",
+							"\r",
+							"        //console.log(arrItem);\r",
+							"        console.log(arrItem.display_name);\r",
+							"        console.log(arrItem.subject);\r",
+							"        //pm.expect(arrItem.subject).to.have.any.keys('{{SK}}');\r",
+							"    })\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subject\": \"{{SK}}\",\r\n    \"subject_key\": \"{{SK}}\",\r\n    \"date\": \"2020-08-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://nfactorylive.ncinga.com/app_shift_services/getshiftsforsubject",
+					"protocol": "https",
+					"host": [
+						"nfactorylive",
+						"ncinga",
+						"com"
+					],
+					"path": [
+						"app_shift_services",
+						"getshiftsforsubject"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0f39e06f-4e38-4de9-adf5-d82e2623e63c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6580455a-5656-4ecc-a3f1-24ed9b897add",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

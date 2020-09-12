@@ -1,0 +1,406 @@
+{
+	"info": {
+		"_postman_id": "5a183e73-b906-4acf-8486-4923f65d4106",
+		"name": "Input App - Main Events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reject-Event",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ca6755cd-7c59-4616-8a90-e9e584756807",
+						"exec": [
+							"var current_timestamp = new Date();\r",
+							" postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());\r",
+							" var time = current_timestamp.toISOString();\r",
+							"var moment = require(\"moment\")\r",
+							"\r",
+							"var epoch = moment(time).valueOf();\r",
+							"\r",
+							"pm.environment.set('epoch', epoch);\r",
+							"console.log(epoch);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "359780e5-51d8-43ed-b184-69f20e3cc592",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "oneapp.ncinga.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
+					},
+					{
+						"key": "content-type",
+						"value": "application/vnd.kafka.json.v2+json"
+					},
+					{
+						"key": "origin",
+						"value": "https://oneapp.ncinga.com"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://oneapp.ncinga.com/counting-app/"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"records\": [\r\n        {\r\n            \"value\": {\r\n                \"w1\": {\r\n                    \"dt\": {{epoch}},\r\n                    \"tz\": \"Asia/Colombo\",\r\n                    \"os\": -330,\r\n                    \"cc\": {\r\n                        \"i\": {{epoch}},\r\n                        \"o\": {{epoch}}\r\n                    }\r\n                },\r\n                \"a\": {\r\n                    \"sub\": \"ant-aal-aepz-floor1-sewing-section1-line4-station6\",\r\n                    \"ctx\": [\r\n                        {\r\n                            \"k\": \"buyer\",\r\n                            \"v\": \"GAP\"\r\n                        },\r\n                        {\r\n                            \"k\": \"po\",\r\n                            \"v\": \"VJ90J\"\r\n                        },\r\n                        {\r\n                            \"k\": \"style\",\r\n                            \"v\": \"552416\"\r\n                        },\r\n                        {\r\n                            \"k\": \"color\",\r\n                            \"v\": \"TWI LIGHT\"\r\n                        }\r\n                    ],\r\n                    \"aux\": {\r\n                        \"gid\": null,\r\n                        \"rnd\": null,\r\n                        \"snm\": null,\r\n                        \"smv\": 16,\r\n                        \"operator\": 55,\r\n                        \"helper\": 6,\r\n                        \"qty\": 23,\r\n                        \"efficiency\": 0.25,\r\n                        \"working_hours\": 10,\r\n                        \"iron_man\": 4,\r\n                        \"hsk\": \"primary\",\r\n                        \"dnm\": \"Team04\",\r\n                        \"dnr\": \"Endline QC\"\r\n                    },\r\n                    \"ecx\": {\r\n                        \"num\": {},\r\n                        \"tag\": {\r\n                            \"shift\": \"8_5shift_D_2020-09-10\",\r\n                            \"shift_dn\": \"Shift1\",\r\n                            \"team\": \"\",\r\n                            \"search_id\": null,\r\n                            \"src_ids\": {\r\n                                \"plan_id\": \"5f599d87c237991e0c196f39\",\r\n                                \"search_id\": null\r\n                            }\r\n                        }\r\n                    },\r\n                    \"oss_sub\": null,\r\n                    \"snm\": \"Team04\",\r\n                    \"dnrk\": \"endline_qc\"\r\n                },\r\n                \"w2\": {\r\n                    \"ad\": \"web_a9d7ce21-17e3-48f5-b664-6fcdfcdfe515\",\r\n                    \"at\": \"endline_qc\",\r\n                    \"ur\": {\r\n                        \"id\": \"ananta-plan\",\r\n                        \"nm\": \"Ananta\"\r\n                    },\r\n                    \"epf\": \"\",\r\n                    \"mi\": \"1599746438558-1010\"\r\n                },\r\n                \"ei\": {\r\n                    \"dt\": {{epoch}},\r\n                    \"id\": 11\r\n                },\r\n                \"w3\": {\r\n                    \"ac\": [\r\n                        {\r\n                            \"size\": {\r\n                                \"category_id\": \"Waist_Size\",\r\n                                \"name\": \"49\",\r\n                                \"a_ctx\": 1\r\n                            }\r\n                        }\r\n                    ],\r\n                    \"ty\": \"category\",\r\n                    \"nm\": \"reject\",\r\n                    \"vl\": 1,\r\n                    \"cv\": 1\r\n                }\r\n            },\r\n            \"key\": \"5\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "https://oneapp.ncinga.com/event_services/topics/ant-aal-aepz-activity",
+					"protocol": "https",
+					"host": [
+						"oneapp",
+						"ncinga",
+						"com"
+					],
+					"path": [
+						"event_services",
+						"topics",
+						"ant-aal-aepz-activity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FTT-Event",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7607f4e8-d14a-4096-91aa-148cffe4ac07",
+						"exec": [
+							"var current_timestamp = new Date();\r",
+							" postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());\r",
+							" var time = current_timestamp.toISOString();\r",
+							"var moment = require(\"moment\")\r",
+							"\r",
+							"var epoch = moment(time).valueOf();\r",
+							"\r",
+							"pm.environment.set('epoch', epoch);\r",
+							"console.log(epoch);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2eca24b9-063a-4eba-b8c7-7aef23126e74",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "oneapp.ncinga.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
+					},
+					{
+						"key": "content-type",
+						"value": "application/vnd.kafka.json.v2+json"
+					},
+					{
+						"key": "origin",
+						"value": "https://oneapp.ncinga.com"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://oneapp.ncinga.com/counting-app/"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"records\": [\r\n        {\r\n            \"value\": {\r\n                \"w1\": {\r\n                    \"dt\": {{epoch}},\r\n                    \"tz\": \"Asia/Colombo\",\r\n                    \"os\": -330,\r\n                    \"cc\": {\r\n                        \"i\": {{epoch}},\r\n                        \"o\": {{epoch}}\r\n                    }\r\n                },\r\n                \"a\": {\r\n                    \"sub\": \"ant-aal-aepz-floor1-sewing-section1-line4-station6\",\r\n                    \"ctx\": [\r\n                        {\r\n                            \"k\": \"buyer\",\r\n                            \"v\": \"GAP\"\r\n                        },\r\n                        {\r\n                            \"k\": \"po\",\r\n                            \"v\": \"VJ90J\"\r\n                        },\r\n                        {\r\n                            \"k\": \"style\",\r\n                            \"v\": \"552416\"\r\n                        },\r\n                        {\r\n                            \"k\": \"color\",\r\n                            \"v\": \"TWI LIGHT\"\r\n                        }\r\n                    ],\r\n                    \"aux\": {\r\n                        \"gid\": null,\r\n                        \"rnd\": null,\r\n                        \"snm\": null,\r\n                        \"smv\": 16,\r\n                        \"operator\": 55,\r\n                        \"helper\": 6,\r\n                        \"qty\": 23,\r\n                        \"efficiency\": 0.25,\r\n                        \"working_hours\": 10,\r\n                        \"iron_man\": 4,\r\n                        \"hsk\": \"primary\",\r\n                        \"dnm\": \"Team04\",\r\n                        \"dnr\": \"Endline QC\"\r\n                    },\r\n                    \"ecx\": {\r\n                        \"num\": {},\r\n                        \"tag\": {\r\n                            \"shift\": \"8_5shift_D_2020-09-10\",\r\n                            \"shift_dn\": \"Shift1\",\r\n                            \"team\": \"\",\r\n                            \"search_id\": null,\r\n                            \"src_ids\": {\r\n                                \"plan_id\": \"5f599d87c237991e0c196f39\",\r\n                                \"search_id\": null\r\n                            }\r\n                        }\r\n                    },\r\n                    \"oss_sub\": null,\r\n                    \"snm\": \"Team04\",\r\n                    \"dnrk\": \"endline_qc\"\r\n                },\r\n                \"w2\": {\r\n                    \"ad\": \"web_a9d7ce21-17e3-48f5-b664-6fcdfcdfe515\",\r\n                    \"at\": \"endline_qc\",\r\n                    \"ur\": {\r\n                        \"id\": \"ananta-plan\",\r\n                        \"nm\": \"Ananta\"\r\n                    },\r\n                    \"epf\": \"\",\r\n                    \"mi\": \"1599748165723-1012\"\r\n                },\r\n                \"ei\": {\r\n                    \"dt\": {{epoch}},\r\n                    \"id\": 12\r\n                },\r\n                \"w3\": {\r\n                    \"ac\": [\r\n                        {\r\n                            \"size\": {\r\n                                \"category_id\": \"Waist_Size\",\r\n                                \"name\": \"32\",\r\n                                \"a_ctx\": 1\r\n                            }\r\n                        }\r\n                    ],\r\n                    \"ty\": \"category\",\r\n                    \"nm\": \"ftt\",\r\n                    \"vl\": 10,\r\n                    \"cv\": 1\r\n                }\r\n            },\r\n            \"key\": \"1\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "https://oneapp.ncinga.com/event_services/topics/ant-aal-aepz-activity",
+					"protocol": "https",
+					"host": [
+						"oneapp",
+						"ncinga",
+						"com"
+					],
+					"path": [
+						"event_services",
+						"topics",
+						"ant-aal-aepz-activity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Defect-Event",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b2b7973c-fde5-429f-8edf-5e67551b92b4",
+						"exec": [
+							"var current_timestamp = new Date();\r",
+							" postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());\r",
+							" var time = current_timestamp.toISOString();\r",
+							"var moment = require(\"moment\")\r",
+							"\r",
+							"var epoch = moment(time).valueOf();\r",
+							"\r",
+							"pm.environment.set('epoch', epoch);\r",
+							"console.log(epoch);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b26e2f1f-6bca-4336-b5ff-75b7696c36a1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "oneapp.ncinga.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
+					},
+					{
+						"key": "content-type",
+						"value": "application/vnd.kafka.json.v2+json"
+					},
+					{
+						"key": "origin",
+						"value": "https://oneapp.ncinga.com"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://oneapp.ncinga.com/counting-app/"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"records\": [\r\n        {\r\n            \"value\": {\r\n                \"w1\": {\r\n                    \"dt\": {{epoch}},\r\n                    \"tz\": \"Asia/Colombo\",\r\n                    \"os\": -330,\r\n                    \"cc\": {\r\n                        \"i\": {{epoch}},\r\n                        \"o\": {{epoch}}\r\n                    }\r\n                },\r\n                \"a\": {\r\n                    \"sub\": \"ant-aal-aepz-floor1-sewing-section1-line4-station6\",\r\n                    \"ctx\": [\r\n                        {\r\n                            \"k\": \"buyer\",\r\n                            \"v\": \"GAP\"\r\n                        },\r\n                        {\r\n                            \"k\": \"po\",\r\n                            \"v\": \"VJ90J\"\r\n                        },\r\n                        {\r\n                            \"k\": \"style\",\r\n                            \"v\": \"552416\"\r\n                        },\r\n                        {\r\n                            \"k\": \"color\",\r\n                            \"v\": \"TWI LIGHT\"\r\n                        }\r\n                    ],\r\n                    \"aux\": {\r\n                        \"gid\": \"2@GAP-VJ90J-552416-TWI LIGHT@1599748618102\",\r\n                        \"rnd\": 1,\r\n                        \"snm\": \"ccc\",\r\n                        \"smv\": 16,\r\n                        \"operator\": 55,\r\n                        \"helper\": 6,\r\n                        \"qty\": 23,\r\n                        \"efficiency\": 0.25,\r\n                        \"working_hours\": 10,\r\n                        \"iron_man\": 4,\r\n                        \"hsk\": \"primary\",\r\n                        \"dnm\": \"Team04\",\r\n                        \"dnr\": \"Endline QC\"\r\n                    },\r\n                    \"ecx\": {\r\n                        \"num\": {},\r\n                        \"tag\": {\r\n                            \"shift\": \"8_5shift_D_2020-09-10\",\r\n                            \"shift_dn\": \"Shift1\",\r\n                            \"team\": \"\",\r\n                            \"search_id\": null,\r\n                            \"src_ids\": {\r\n                                \"plan_id\": \"5f599d87c237991e0c196f39\",\r\n                                \"search_id\": null\r\n                            }\r\n                        }\r\n                    },\r\n                    \"oss_sub\": null,\r\n                    \"snm\": \"Team04\",\r\n                    \"dnrk\": \"endline_qc\"\r\n                },\r\n                \"w2\": {\r\n                    \"ad\": \"web_a9d7ce21-17e3-48f5-b664-6fcdfcdfe515\",\r\n                    \"at\": \"endline_qc\",\r\n                    \"ur\": {\r\n                        \"id\": \"ananta-plan\",\r\n                        \"nm\": \"Ananta\"\r\n                    },\r\n                    \"epf\": \"\",\r\n                    \"mi\": \"1599748622458-1017\"\r\n                },\r\n                \"ei\": {\r\n                    \"dt\": {{epoch}},\r\n                    \"id\": 17\r\n                },\r\n                \"w3\": {\r\n                    \"ac\": [\r\n                        {\r\n                            \"size\": {\r\n                                \"category_id\": \"Waist_Size\",\r\n                                \"name\": \"59\",\r\n                                \"a_ctx\": 1\r\n                            },\r\n                            \"operation\": {\r\n                                \"category_id\": \"1\",\r\n                                \"name\": \"Label\",\r\n                                \"value\": 0\r\n                            },\r\n                            \"issues\": {\r\n                                \"category_id\": \"A\",\r\n                                \"name\": \"Uneven Top Stitches\"\r\n                            },\r\n                            \"silhouette\": {\r\n                                \"x\": 0.35835351089588374,\r\n                                \"y\": 0.19399538106235564,\r\n                                \"image\": \"front image\",\r\n                                \"shillohutte_id\": \"ccc\"\r\n                            }\r\n                        }\r\n                    ],\r\n                    \"ty\": \"category\",\r\n                    \"nm\": \"defect\",\r\n                    \"vl\": 10,\r\n                    \"cv\": 1\r\n                }\r\n            },\r\n            \"key\": \"1\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "https://oneapp.ncinga.com/event_services/topics/ant-aal-aepz-activity",
+					"protocol": "https",
+					"host": [
+						"oneapp",
+						"ncinga",
+						"com"
+					],
+					"path": [
+						"event_services",
+						"topics",
+						"ant-aal-aepz-activity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Defectives-Event",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d94bd60-0847-4621-b438-5acb48b1e28e",
+						"exec": [
+							"var current_timestamp = new Date();\r",
+							" postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());\r",
+							" var time = current_timestamp.toISOString();\r",
+							"var moment = require(\"moment\")\r",
+							"\r",
+							"var epoch = moment(time).valueOf();\r",
+							"\r",
+							"pm.environment.set('epoch', epoch);\r",
+							"console.log(epoch);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a42f4122-8a8f-437d-a2a2-5d3a375173a8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "oneapp.ncinga.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
+					},
+					{
+						"key": "content-type",
+						"value": "application/vnd.kafka.json.v2+json"
+					},
+					{
+						"key": "origin",
+						"value": "https://oneapp.ncinga.com"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://oneapp.ncinga.com/counting-app/"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"records\": [\r\n        {\r\n            \"value\": {\r\n                \"w1\": {\r\n                    \"dt\": {{epoch}},\r\n                    \"tz\": \"Asia/Colombo\",\r\n                    \"os\": -330,\r\n                    \"cc\": {\r\n                        \"i\": {{epoch}},\r\n                        \"o\": {{epoch}}\r\n                    }\r\n                },\r\n                \"a\": {\r\n                    \"sub\": \"ant-aal-aepz-floor1-sewing-section1-line4-station6\",\r\n                    \"ctx\": [\r\n                        {\r\n                            \"k\": \"buyer\",\r\n                            \"v\": \"GAP\"\r\n                        },\r\n                        {\r\n                            \"k\": \"po\",\r\n                            \"v\": \"VJ90J\"\r\n                        },\r\n                        {\r\n                            \"k\": \"style\",\r\n                            \"v\": \"552416\"\r\n                        },\r\n                        {\r\n                            \"k\": \"color\",\r\n                            \"v\": \"TWI LIGHT\"\r\n                        }\r\n                    ],\r\n                    \"aux\": {\r\n                        \"gid\": \"2@GAP-VJ90J-552416-TWI LIGHT@1599748618102\",\r\n                        \"rnd\": 1,\r\n                        \"snm\": \"ccc\",\r\n                        \"smv\": 16,\r\n                        \"operator\": 55,\r\n                        \"helper\": 6,\r\n                        \"qty\": 23,\r\n                        \"efficiency\": 0.25,\r\n                        \"working_hours\": 10,\r\n                        \"iron_man\": 4,\r\n                        \"hsk\": \"primary\",\r\n                        \"dnm\": \"Team04\",\r\n                        \"dnr\": \"Endline QC\"\r\n                    },\r\n                    \"ecx\": {\r\n                        \"num\": {},\r\n                        \"tag\": {\r\n                            \"shift\": \"8_5shift_D_2020-09-10\",\r\n                            \"shift_dn\": \"Shift1\",\r\n                            \"team\": \"\",\r\n                            \"search_id\": null,\r\n                            \"src_ids\": {\r\n                                \"plan_id\": \"5f599d87c237991e0c196f39\",\r\n                                \"search_id\": null\r\n                            }\r\n                        }\r\n                    },\r\n                    \"oss_sub\": null,\r\n                    \"snm\": \"Team04\",\r\n                    \"dnrk\": \"endline_qc\"\r\n                },\r\n                \"w2\": {\r\n                    \"ad\": \"web_a9d7ce21-17e3-48f5-b664-6fcdfcdfe515\",\r\n                    \"at\": \"endline_qc\",\r\n                    \"ur\": {\r\n                        \"id\": \"ananta-plan\",\r\n                        \"nm\": \"Ananta\"\r\n                    },\r\n                    \"epf\": \"\",\r\n                    \"mi\": \"1599748622452-1016\"\r\n                },\r\n                \"ei\": {\r\n                    \"dt\": {{epoch}},\r\n                    \"id\": 16\r\n                },\r\n                \"w3\": {\r\n                    \"ac\": [\r\n                        {\r\n                            \"size\": {\r\n                                \"category_id\": \"Waist_Size\",\r\n                                \"name\": \"59\",\r\n                                \"a_ctx\": 1\r\n                            },\r\n                            \"operation\": {\r\n                                \"category_id\": \"1\",\r\n                                \"name\": \"Label\",\r\n                                \"value\": 0\r\n                            },\r\n                            \"issues\": {\r\n                                \"category_id\": \"A\",\r\n                                \"name\": \"Uneven Top Stitches\"\r\n                            },\r\n                            \"silhouette\": {\r\n                                \"x\": 0.35835351089588374,\r\n                                \"y\": 0.19399538106235564,\r\n                                \"image\": \"front image\",\r\n                                \"shillohutte_id\": \"ccc\"\r\n                            }\r\n                        }\r\n                    ],\r\n                    \"ty\": \"category\",\r\n                    \"nm\": \"defectives\",\r\n                    \"vl\": 5,\r\n                    \"cv\": 1\r\n                }\r\n            },\r\n            \"key\": \"2\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "https://oneapp.ncinga.com/event_services/topics/ant-aal-aepz-activity",
+					"protocol": "https",
+					"host": [
+						"oneapp",
+						"ncinga",
+						"com"
+					],
+					"path": [
+						"event_services",
+						"topics",
+						"ant-aal-aepz-activity"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

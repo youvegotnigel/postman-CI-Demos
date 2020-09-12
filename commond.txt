@@ -1,0 +1,5 @@
+#run input events
+newman run input-app-events2.json -n 1 --env-var base_url="oneapp.ncinga.com" --delay-request 10
+
+
+newman run "https://www.getpostman.com/collections/ac2abcdbc0eefc2bf908" -d sk.json --disable-unicode --suppress-exit-code 1
